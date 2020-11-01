@@ -1,7 +1,7 @@
 import UIKit
 
 class TypeProductViewCell: UICollectionViewCell {
-    var typeLabel: UILabel!
+    var typeButton: UIButton!
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -17,17 +17,19 @@ class TypeProductViewCell: UICollectionViewCell {
     }
     
     func setupLabel(typeOf: String) {
-        typeLabel = UILabel()
-        typeLabel.text = typeOf
-        typeLabel.textAlignment = .center
-        typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(typeLabel)
+        typeButton = UIButton()
+        typeButton.isUserInteractionEnabled = false
+        typeButton.setTitle(typeOf, for: .normal)
+        typeButton.setTitleColor(.black, for: .normal)
+        typeButton.setTitleColor(.gray, for: .highlighted)
+        typeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(typeButton)
     }
     
     func setupLayout() {
-        typeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        typeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        typeLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        typeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        typeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        typeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        typeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        typeButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
     }
 }

@@ -1,17 +1,5 @@
 import Foundation
 
-enum TypeProduct: String {
-    case Clothes = "clothes"
-    case Shoes = "shoes"
-    case Accessories = "accessories"
-    func getAll() -> [String] {
-        return [TypeProduct.Clothes.rawValue,
-                TypeProduct.Shoes.rawValue, TypeProduct.Accessories.rawValue]
-    }
-}
-
-
-
 struct Product {
     var name: String
     var price: Double

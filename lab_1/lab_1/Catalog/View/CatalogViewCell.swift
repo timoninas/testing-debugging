@@ -115,7 +115,7 @@ class CatalogViewCell: UICollectionViewCell {
         self.addSubview(buyButton)
         buyButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         buyButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        buyButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+        buyButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
         buyButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
 }

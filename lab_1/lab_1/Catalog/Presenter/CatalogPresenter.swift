@@ -14,7 +14,7 @@ class CatalogPresenter: CatalogOutputProtocol {
     let view: CatalogInputProtocol
     var initialProducts: [Product]?
     var products: [Product]?
-    var typesProducts: [String] = ["all", "clothes", "shoes", "accessories"]
+    var typesProducts: [String] = ["Filter", "All", "Clothes", "Shoes", "Accessories"]
     
     required init(view: CatalogInputProtocol, products: [Product]?) {
         self.view = view

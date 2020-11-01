@@ -41,9 +41,9 @@ class CatalogView: UIViewController, CatalogInputProtocol {
         typeProductCollectionView.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         typeProductCollectionView.showsHorizontalScrollIndicator = false
         typeProductCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        typeProductCollectionView.gro
+        //        typeProductCollectionView.gro
         typeProductCollectionView.register(TypeProductViewCell.self,
-                                forCellWithReuseIdentifier: "TypeProductViewCell")
+                                           forCellWithReuseIdentifier: "TypeProductViewCell")
         typeProductCollectionView.delegate = self
         typeProductCollectionView.dataSource = self
         view.addSubview(typeProductCollectionView)
@@ -55,7 +55,7 @@ class CatalogView: UIViewController, CatalogInputProtocol {
         catalogCollectionView.showsVerticalScrollIndicator = false
         catalogCollectionView.translatesAutoresizingMaskIntoConstraints = false
         catalogCollectionView.register(CatalogViewCell.self,
-                                forCellWithReuseIdentifier: "CatalogViewCell")
+                                       forCellWithReuseIdentifier: "CatalogViewCell")
         catalogCollectionView.delegate = self
         catalogCollectionView.dataSource = self
         view.addSubview(catalogCollectionView)
@@ -71,14 +71,32 @@ class CatalogView: UIViewController, CatalogInputProtocol {
         typeProductCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         typeProductCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         typeProductCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
-        typeProductCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        typeProductCollectionView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     func layoutCatalogCollectionView() {
-        catalogCollectionView.topAnchor.constraint(equalTo: typeProductCollectionView.bottomAnchor, constant: 0).isActive = true
+        catalogCollectionView.topAnchor.constraint(equalTo: typeProductCollectionView.bottomAnchor,
+                                                   constant: 0).isActive = true
         catalogCollectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         catalogCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         catalogCollectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
+    }
+    
+    func presentFilterAlert() {
+        let alert = UIAlertController(title: "Filter products", message: "Select the option that you want to filter the product by", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "From low price to high", style: .default) { (_) in
+            print("Filter low price to high")
+        }
+        let action2 = UIAlertAction(title: "From high price to low", style: .default) { (_) in
+            print("Filter high price to low")
+        }
+        let action3 = UIAlertAction(title: "By product type", style: .default) { (_) in
+            print("Filter by product type")
+        }
+        alert.addAction(action1)
+        alert.addAction(action2)
+        alert.addAction(action3)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -116,7 +134,7 @@ extension CatalogView: UICollectionViewDelegateFlowLayout {
         return 10
     }
 }
- 
+
 extension CatalogView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == typeProductCollectionView {
@@ -132,7 +150,7 @@ extension CatalogView: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeProductViewCell", for: indexPath) as! TypeProductViewCell
             let type = presenter.typesProducts[indexPath.item]
             cell.setup(typeOf: type)
-            cell.layer.cornerRadius = 8
+            cell.layer.cornerRadius = 12
             cell.layer.borderColor = #colorLiteral(red: 0.7120197415, green: 0.7068746686, blue: 0.7159602642, alpha: 1)
             cell.layer.borderWidth = 0.3
             return cell
@@ -141,7 +159,7 @@ extension CatalogView: UICollectionViewDataSource {
             guard let products = presenter.products else {return UICollectionViewCell() }
             let product = products[indexPath.item]
             cell.setup(product: product)
-            cell.layer.cornerRadius = 8
+            cell.layer.cornerRadius = 10
             cell.layer.borderColor = #colorLiteral(red: 0.7120197415, green: 0.7068746686, blue: 0.7159602642, alpha: 1)
             cell.layer.borderWidth = 0.5
             return cell
@@ -151,11 +169,19 @@ extension CatalogView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == typeProductCollectionView {
             let index = indexPath.item
-            let type = presenter.typesProducts[index]
-            self.catalogCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
-                                                    at: .top, animated: false)
-            presenter.resetProducts()
-            if type != "all" {
+            let type = presenter.typesProducts[index].lowercased()
+            
+            switch type {
+            case "filter":
+                presentFilterAlert()
+            case "all":
+                self.catalogCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                        at: .top, animated: true)
+                presenter.resetProducts()
+            default:
+                self.catalogCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
+                                                        at: .top, animated: true)
+                presenter.resetProducts()
                 presenter.products = presenter.products?.filter({ (product) -> Bool in
                     if (product.type == type) { return true }
                     return false
