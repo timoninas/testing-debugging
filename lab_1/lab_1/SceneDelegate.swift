@@ -35,8 +35,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Cart Module
         let cartNavController = UINavigationController(rootViewController: Builder.buildCartModule())
         if let cartEmptyDataImg = UIImage(named: "emptyCart")?.pngData(), let cartFilledDataImg = UIImage(named: "filledCart")?.pngData() {
-            let emptyImg = UIImage(data: cartEmptyDataImg, scale: 7.25)
-            let filledImg = UIImage(data: cartFilledDataImg, scale: 7.25)
+            let emptyImg = UIImage(data: cartEmptyDataImg, scale: 7.4)
+            let filledImg = UIImage(data: cartFilledDataImg, scale: 7.4)
             let barItem = UITabBarItem(title: "", image: emptyImg, selectedImage: filledImg)
             cartNavController.tabBarItem = barItem
         }
