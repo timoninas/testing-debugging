@@ -84,19 +84,23 @@ class CatalogView: UIViewController, CatalogInputProtocol {
     
     func presentFilterAlert() {
         let alert = UIAlertController(title: "Filter products", message: "Select the option that you want to filter the product by", preferredStyle: .actionSheet)
-        let action1 = UIAlertAction(title: "From low price to high", style: .default) { (_) in
-            print("Filter low price to high")
+        let action1 = UIAlertAction(title: "From low price to high", style: .default) { [self] (_) in
+            presenter.sortBy(type: .LowToHigh)
         }
-        let action2 = UIAlertAction(title: "From high price to low", style: .default) { (_) in
-            print("Filter high price to low")
+        let action2 = UIAlertAction(title: "From high price to low", style: .default) { [self] (_) in
+            presenter.sortBy(type: .HighToLow)
         }
-        let action3 = UIAlertAction(title: "By product type", style: .default) { (_) in
-            print("Filter by product type")
+        let action3 = UIAlertAction(title: "By product type", style: .default) { [self] (_) in
+            presenter.sortBy(type: .TypeProduct)
         }
         alert.addAction(action1)
         alert.addAction(action2)
         alert.addAction(action3)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func reloadContent() {
+        catalogCollectionView.reloadData()
     }
 }
 
@@ -182,12 +186,8 @@ extension CatalogView: UICollectionViewDataSource {
                 self.catalogCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0),
                                                         at: .top, animated: true)
                 presenter.resetProducts()
-                presenter.products = presenter.products?.filter({ (product) -> Bool in
-                    if (product.type == type) { return true }
-                    return false
-                })
+                presenter.filterByType(indexType: index)
             }
-            catalogCollectionView.reloadData()
         }
     }
 }
