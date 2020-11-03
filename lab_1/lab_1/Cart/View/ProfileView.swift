@@ -1,6 +1,8 @@
 import UIKit
 
-class ProfileView: UIView {
+class ProfileView: UIView, Cellable {
+    public var typeCell: TypeCell! = TypeCell.ProfileTableViewCell
+    
     var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleToFill

@@ -1,6 +1,18 @@
 import Foundation
 
-struct Product {
+enum TypeCell {
+    case ProfileTableViewCell
+    case ProductTableViewCell
+    case EmptyTableViewCell
+}
+
+protocol Cellable {
+    var typeCell: TypeCell! {get set}
+}
+
+struct Product: Cellable {
+    var typeCell: TypeCell! = TypeCell.ProductTableViewCell
+    
     var name: String
     var price: Double
     var type: String

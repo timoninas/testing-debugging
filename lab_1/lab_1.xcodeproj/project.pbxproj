@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7729C5482551E5A700F1875F /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7729C5472551E5A700F1875F /* EmptyTableViewCell.swift */; };
 		772C12E1254B60260010A35C /* CatalogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E0254B60260010A35C /* CatalogViewCell.swift */; };
 		772C12E6254C08570010A35C /* TypeProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E5254C08570010A35C /* TypeProductViewCell.swift */; };
 		772C12EB254C1B3E0010A35C /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12EA254C1B3E0010A35C /* Extension+String.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7729C5472551E5A700F1875F /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		772C12E0254B60260010A35C /* CatalogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewCell.swift; sourceTree = "<group>"; };
 		772C12E5254C08570010A35C /* TypeProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProductViewCell.swift; sourceTree = "<group>"; };
 		772C12EA254C1B3E0010A35C /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				77AFB24A2550214A00FE6B62 /* CartView.swift */,
 				7767581B2550BAAE0049642A /* CartProductViewCell.swift */,
 				776758202550BB680049642A /* ProfileView.swift */,
+				7729C5472551E5A700F1875F /* EmptyTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				776758172550B25F0049642A /* FavouriteViewCell.swift in Sources */,
 				776758212550BB680049642A /* ProfileView.swift in Sources */,
 				774D3303253ED64C001D451F /* ModuleBuilder.swift in Sources */,
+				7729C5482551E5A700F1875F /* EmptyTableViewCell.swift in Sources */,
 				7767581C2550BAAE0049642A /* CartProductViewCell.swift in Sources */,
 				77AFB23B25501FF800FE6B62 /* FavouriteView.swift in Sources */,
 				77AD6E342539C7AE00E0D02B /* SceneDelegate.swift in Sources */,
