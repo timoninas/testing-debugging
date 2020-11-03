@@ -22,7 +22,7 @@ class CartView: UIViewController, CartInputProtocol {
     private func setupProfileView() {
         profileView = ProfileView()
         profileView.translatesAutoresizingMaskIntoConstraints = false
-        profileView.backgroundColor = .green
+        profileView.setup()
         self.view.addSubview(profileView)
     }
     
@@ -38,7 +38,7 @@ class CartView: UIViewController, CartInputProtocol {
     
     private func layout() {
         navigationItem.title = "Your cart"
-        self.view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        self.view.backgroundColor = .white
         layoutProfileView()
         layoutCartTableView()
     }
@@ -47,7 +47,7 @@ class CartView: UIViewController, CartInputProtocol {
         profileView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         profileView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         profileView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        profileView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        profileView.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
     private func layoutCartTableView() {
