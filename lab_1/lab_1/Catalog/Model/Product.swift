@@ -4,10 +4,18 @@ enum TypeCell {
     case ProfileTableViewCell
     case ProductTableViewCell
     case EmptyTableViewCell
+    case EmptyView
 }
 
 protocol Cellable {
     var typeCell: TypeCell! {get set}
+}
+
+func catalogProductToProduct(catalogProduct: CatalogProduct) -> Product {
+    return Product(name: catalogProduct.name ?? "default value",
+                   price: catalogProduct.price,
+                   type: catalogProduct.type ?? "default value",
+                   url: catalogProduct.url)
 }
 
 struct Product: Cellable {
@@ -17,9 +25,14 @@ struct Product: Cellable {
     var price: Double
     var type: String
     var url: String?
+    
+    mutating func Product(name: String, price: Double, type: String, url: String?) {
+        self.name = name
+        self.price = price
+        self.type = type
+        self.url = url
+    }
 }
-
-
 
 // type: "clothes",
 // type: "shoes",
@@ -42,5 +55,8 @@ let Products: [Product] = [
     Product(name: "ШАПКА", price: 2699, type: "accessories", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,t_ivy,e_sharpen/ff00ff2baaae48d3aef4ac5300aadfd6_faec/Shapka_zheltyj_GT9042_HM1.jpg"),
     Product(name: "ШАПКА-УШАНКА COLD.RDY", price: 3999, type: "accessories", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/2943ad8e80d84341929daba400b6a9de_9366/Shapka-ushanka_COLD.RDY_chernyj_FS9028_01_standard.jpg"),
     Product(name: "ШАПКА ADICOLOR POMPOM", price: 1999, type: "accessories", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/cee4568272154e169173ab3b00bbee5d_9366/Shapka_Adicolor_Pompom_sinij_GD4596_01_standard.jpg"),
-    Product(name: "ШАПКА ADIDAS BY STELLA MCCARTNEY", price: 3999, type: "accessories", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/5e5c0c3a6a0347b88e92aba400f7966e_9366/Shapka_adidas_by_Stella_McCartney_fioletovyj_GL2006_01_standard.jpg")
+    Product(name: "ШАПКА ADIDAS BY STELLA MCCARTNEY", price: 3999, type: "accessories", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/5e5c0c3a6a0347b88e92aba400f7966e_9366/Shapka_adidas_by_Stella_McCartney_fioletovyj_GL2006_01_standard.jpg"),
+    Product(name: "ПАРКА MYSHELTER COLD.RDY", price: 26999, type: "clothes", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/f1aa92c9bbd44b599b1eac0700f82bc7_9366/Parka_MYSHELTER_COLD.RDY_chernyj_FR9527_21_model.jpg"),
+    Product(name: "БРЮКИ-КАРГО", price: 7499, type: "clothes", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy,t_ivy,e_sharpen/47797ffed3b94068999bac53009c1b6c_faec/Bryuki-kargo_(Gender_Neutral)_korichnevyj_H38827_HM1.jpg"),
+    Product(name: "БРЮКИ M JQRD FTW", price: 7499, type: "clothes", url: "https://assets.adidas.com/images/h_840,f_auto,q_auto:sensitive,fl_lossy/84131bbbaf6c43219d14ac2800be8ac3_9366/Bryuki_M_JQRD_FTW_chernyj_FS4299_23_hover_model.jpg")
 ]

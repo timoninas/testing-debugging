@@ -6,6 +6,9 @@ class CartView: UIViewController, CartInputProtocol {
     
     private var startProductIndex: Int = 0
     
+    private var priceView: CellableView!
+    private var priceLabel: UILabel!
+    
     private var cells = [Cellable]()
     
     override func viewDidLoad() {
@@ -20,6 +23,8 @@ class CartView: UIViewController, CartInputProtocol {
     
     private func setup() {
         setupProfileView()
+        setupPriceLabel()
+        setupPriceView()
         setupCartTableView()
         setupCells()
     }
@@ -28,6 +33,19 @@ class CartView: UIViewController, CartInputProtocol {
         profileView = ProfileView()
         profileView.translatesAutoresizingMaskIntoConstraints = false
         profileView.setup()
+    }
+    
+    func setupPriceView() {
+        priceView = CellableView()
+        priceView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupPriceLabel() {
+        priceLabel = UILabel()
+        priceLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 19.0)
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.numberOfLines = 1
+        priceLabel.text = "Сумма заказа: 10000 РУБ."
     }
     
     private func setupCartTableView() {
@@ -46,6 +64,7 @@ class CartView: UIViewController, CartInputProtocol {
         cells += [EmptyTableViewCell()]
         cells += [profileView]
         cells += [EmptyTableViewCell()]
+        cells += [CellableView()]
         cells += Products
     }
     
@@ -53,6 +72,7 @@ class CartView: UIViewController, CartInputProtocol {
         navigationItem.title = "Your cart"
         self.view.backgroundColor = .white
         layoutCartTableView()
+        layoutPriceLabel()
     }
     
     private func layoutProfileView(cell: UITableViewCell) {
@@ -67,6 +87,21 @@ class CartView: UIViewController, CartInputProtocol {
         cartTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         cartTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         cartTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+    }
+    
+    private func layoutPriceLabel() {
+        priceView.addSubview(priceLabel)
+        priceLabel.topAnchor.constraint(equalTo: priceView.topAnchor, constant: 0).isActive = true
+        priceLabel.leftAnchor.constraint(equalTo: priceView.leftAnchor, constant: 10).isActive = true
+        priceLabel.bottomAnchor.constraint(equalTo: priceView.bottomAnchor, constant: 0).isActive = true
+        priceLabel.rightAnchor.constraint(equalTo: priceView.rightAnchor, constant: -10).isActive = true
+    }
+    
+    private func layoutPriceView(cell: UITableViewCell) {
+        priceView.topAnchor.constraint(equalTo: cell.topAnchor, constant: 0).isActive = true
+        priceView.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: 0).isActive = true
+        priceView.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: 0).isActive = true
+        priceView.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 0).isActive = true
     }
 }
 
@@ -93,6 +128,12 @@ extension CartView: UITableViewDataSource {
             let cell = UITableViewCell()
             cell.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9294117647, blue: 0.9450980392, alpha: 1)
             return cell
+            
+        case .EmptyView:
+            let cell = UITableViewCell()
+            cell.addSubview(priceView)
+            layoutPriceView(cell: cell)
+            return cell
         case .none:
             return UITableViewCell()
         
@@ -110,9 +151,27 @@ extension CartView: UITableViewDelegate {
             return 80
         case .some(.EmptyTableViewCell):
             return 11
+        case .EmptyView:
+            return 55
         case .none:
             return 0
         
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        switch cells[index].typeCell {
+        case .ProductTableViewCell:
+            tableView.deselectRow(at: indexPath, animated: true)
+        case .ProfileTableViewCell:
+            tableView.deselectRow(at: indexPath, animated: true)
+        case .some(.EmptyTableViewCell):
+            tableView.deselectRow(at: indexPath, animated: false)
+        case .EmptyView:
+            tableView.deselectRow(at: indexPath, animated: false)
+        case .none:
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
 }

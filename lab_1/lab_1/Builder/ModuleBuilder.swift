@@ -7,7 +7,8 @@ protocol BuilderProtocol: class {
 final class Builder: BuilderProtocol {
     static func buildCatalogModule() -> UIViewController {
         let view = CatalogView()
-        let presenter: CatalogOutputProtocol = CatalogPresenter(view: view, products: Products)
+        let networkService = NetworkService()
+        let presenter = CatalogPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         return view
     }

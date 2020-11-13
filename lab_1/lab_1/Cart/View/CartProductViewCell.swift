@@ -101,9 +101,10 @@ class CartProductViewCell: UITableViewCell {
     private func layoutLabelsStackView() {
         self.addSubview(labelStackView)
         labelStackView.leftAnchor.constraint(equalTo: productImageView.rightAnchor, constant: 10).isActive = true
-        labelStackView.heightAnchor.constraint(equalTo: productImageView.heightAnchor, multiplier: 0.8).isActive = true
+        labelStackView.heightAnchor.constraint(equalTo: productImageView.heightAnchor, multiplier: 0.9).isActive = true
         labelStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        labelStackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        labelStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -35).isActive = true
+//        labelStackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
     private func layoutCancelButton() {

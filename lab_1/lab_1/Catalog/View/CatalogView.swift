@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CatalogView: UIViewController, CatalogInputProtocol {
     
@@ -20,6 +21,7 @@ class CatalogView: UIViewController, CatalogInputProtocol {
         super.viewDidLoad()
         print("view did load")
         navigationItem.title = "One Shop"
+        presenter.fetchProducts()
         setup()
     }
     
@@ -27,6 +29,14 @@ class CatalogView: UIViewController, CatalogInputProtocol {
         super.viewDidLayoutSubviews()
         print("view did layout")
         layout()
+    }
+    
+    func success() {
+        
+    }
+    
+    func failure() {
+        
     }
     
     func setup() {
@@ -161,7 +171,7 @@ extension CatalogView: UICollectionViewDataSource {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatalogViewCell", for: indexPath) as! CatalogViewCell
             guard let products = presenter.products else {return UICollectionViewCell() }
-            let product = products[indexPath.item]
+            let product = catalogProductToProduct(catalogProduct: products[indexPath.item])
             cell.setup(product: product)
             cell.layer.cornerRadius = 10
             cell.layer.borderColor = #colorLiteral(red: 0.7120197415, green: 0.7068746686, blue: 0.7159602642, alpha: 1)

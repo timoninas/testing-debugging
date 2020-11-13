@@ -52,6 +52,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
         
+        //
+        //
+        // MARK:- Refill Data Base
+        refillDataBase()
+    }
+    
+    func refillDataBase() {
+        let catalog = CoreDataManager.shared.getCatalog()
+        catalog.forEach { (product) in
+            CoreDataManager.shared.deleteProductFromCatalog(product: product)
+        }
+        Products.forEach { (product) in
+            CoreDataManager.shared.addProductToCatalog(product: product)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
