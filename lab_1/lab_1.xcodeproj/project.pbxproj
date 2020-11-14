@@ -22,6 +22,9 @@
 		7767581C2550BAAE0049642A /* CartProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767581B2550BAAE0049642A /* CartProductViewCell.swift */; };
 		776758212550BB680049642A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776758202550BB680049642A /* ProfileView.swift */; };
 		776CE9FB254C3074008828E1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 776CE9FA254C3074008828E1 /* Kingfisher */; };
+		77878AF3255FBCBC007FE155 /* CoreDataManager+Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AF2255FBCBC007FE155 /* CoreDataManager+Catalog.swift */; };
+		77878AF8255FBD18007FE155 /* CoreDataManager+Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AF7255FBD18007FE155 /* CoreDataManager+Favourite.swift */; };
+		77878AFD255FBD34007FE155 /* CoreDataManager+Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AFC255FBD34007FE155 /* CoreDataManager+Cart.swift */; };
 		77A64F86255D1C9D00FF6E70 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */; };
 		77AD6E322539C7AE00E0D02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD6E312539C7AE00E0D02B /* AppDelegate.swift */; };
 		77AD6E342539C7AE00E0D02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD6E332539C7AE00E0D02B /* SceneDelegate.swift */; };
@@ -68,6 +71,9 @@
 		776758162550B25F0049642A /* FavouriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCell.swift; sourceTree = "<group>"; };
 		7767581B2550BAAE0049642A /* CartProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductViewCell.swift; sourceTree = "<group>"; };
 		776758202550BB680049642A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		77878AF2255FBCBC007FE155 /* CoreDataManager+Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Catalog.swift"; sourceTree = "<group>"; };
+		77878AF7255FBD18007FE155 /* CoreDataManager+Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Favourite.swift"; sourceTree = "<group>"; };
+		77878AFC255FBD34007FE155 /* CoreDataManager+Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Cart.swift"; sourceTree = "<group>"; };
 		77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		77AD6E2E2539C7AE00E0D02B /* lab_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AD6E312539C7AE00E0D02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +188,25 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		77878AEA255FBC90007FE155 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				77878AEE255FBCA1007FE155 /* CoreData */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		77878AEE255FBCA1007FE155 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */,
+				77878AF2255FBCBC007FE155 /* CoreDataManager+Catalog.swift */,
+				77878AF7255FBD18007FE155 /* CoreDataManager+Favourite.swift */,
+				77878AFC255FBD34007FE155 /* CoreDataManager+Cart.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		77AD6E252539C7AD00E0D02B = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +232,7 @@
 			children = (
 				77AD6E312539C7AE00E0D02B /* AppDelegate.swift */,
 				77AD6E332539C7AE00E0D02B /* SceneDelegate.swift */,
-				77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */,
+				77878AEA255FBC90007FE155 /* Managers */,
 				772218D4255F1E65009F21BF /* Services */,
 				774D330F253ED6A1001D451F /* Builder */,
 				774D3307253ED68B001D451F /* Catalog */,
@@ -419,9 +444,12 @@
 				7767580B2550AD170049642A /* CartPresenter.swift in Sources */,
 				772C12EB254C1B3E0010A35C /* Extension+String.swift in Sources */,
 				772C12E6254C08570010A35C /* TypeProductViewCell.swift in Sources */,
+				77878AF8255FBD18007FE155 /* CoreDataManager+Favourite.swift in Sources */,
 				77AD6E362539C7AE00E0D02B /* CatalogView.swift in Sources */,
+				77878AF3255FBCBC007FE155 /* CoreDataManager+Catalog.swift in Sources */,
 				77AD6E3C2539C7AE00E0D02B /* lab_1.xcdatamodeld in Sources */,
 				774D3317253ED8B5001D451F /* CatalogPresenter.swift in Sources */,
+				77878AFD255FBD34007FE155 /* CoreDataManager+Cart.swift in Sources */,
 				77AD6E322539C7AE00E0D02B /* AppDelegate.swift in Sources */,
 				77AFB24B2550214A00FE6B62 /* CartView.swift in Sources */,
 				776758172550B25F0049642A /* FavouriteViewCell.swift in Sources */,

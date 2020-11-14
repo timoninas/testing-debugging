@@ -1,23 +1,7 @@
-import UIKit
+import Foundation
 import CoreData
 
-struct CoreDataManager {
-    static let shared = CoreDataManager()
-    
-    let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "lab_1")
-        container.loadPersistentStores { (description, error) in
-            if let err = error {
-                fatalError("Loading data bases failed: \(err)")
-            }
-        }
-        return container
-    }()
-    
-    var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
+extension CoreDataManager {
     func getCatalog() -> [CatalogProduct] {
         let context = self.viewContext
         let fetchRequest = NSFetchRequest<CatalogProduct>(entityName: "CatalogProduct")
