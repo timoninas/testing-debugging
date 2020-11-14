@@ -41,8 +41,10 @@ class CatalogPresenter: CatalogOutputProtocol {
             case .success(let catalogProducts):
                 self.initialProducts = catalogProducts
                 self.products = catalogProducts
+                self.view.success()
             case .failure(let error):
                 print(error.localizedDescription)
+                self.view.failure()
             }
         }
     }

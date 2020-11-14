@@ -3,7 +3,8 @@ import Kingfisher
 
 class CartProductViewCell: UITableViewCell {
     
-    private var product: Product!
+    public var delegate: ReloadDelegate!
+    private var product: CartProduct!
     
     private var productImageView: UIImageView = {
         let iv = UIImageView()
@@ -61,12 +62,11 @@ class CartProductViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func setup(product: Product) {
+    public func setup(product: CartProduct) {
         self.product = product
         setupProduct()
         setupLabelsStackView()
         layout()
-        cancelButton.addTarget(self, action: #selector(printBTN), for: .touchUpInside)
     }
     
     private func setupProduct() {
@@ -108,6 +108,7 @@ class CartProductViewCell: UITableViewCell {
     }
     
     private func layoutCancelButton() {
+        cancelButton.addTarget(self, action: #selector(removeProduct), for: .touchUpInside)
         self.contentView.addSubview(cancelButton)
         cancelButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.175).isActive = true
         cancelButton.widthAnchor.constraint(equalTo: cancelButton.heightAnchor).isActive = true
@@ -116,7 +117,10 @@ class CartProductViewCell: UITableViewCell {
     }
     
     @objc
-    func printBTN() {
-        print("Stub")
+    func removeProduct() {
+        CoreDataManager.shared.deleteProductFromCart(cartProduct: self.product)
+        if let delegate = delegate {
+            delegate.reloadCollectionView()
+        }
     }
 }

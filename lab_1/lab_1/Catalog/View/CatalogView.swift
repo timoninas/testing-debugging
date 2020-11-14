@@ -19,20 +19,18 @@ class CatalogView: UIViewController, CatalogInputProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
+        setup()
         navigationItem.title = "One Shop"
         presenter.fetchProducts()
-        setup()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("view did layout")
         layout()
     }
     
     func success() {
-        
+        catalogCollectionView.reloadData()
     }
     
     func failure() {
@@ -171,8 +169,8 @@ extension CatalogView: UICollectionViewDataSource {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatalogViewCell", for: indexPath) as! CatalogViewCell
             guard let products = presenter.products else {return UICollectionViewCell() }
-            let product = catalogProductToProduct(catalogProduct: products[indexPath.item])
-            cell.setup(product: product)
+            let product = products[indexPath.item]
+            cell.setup(catalogProduct: product)
             cell.layer.cornerRadius = 10
             cell.layer.borderColor = #colorLiteral(red: 0.7120197415, green: 0.7068746686, blue: 0.7159602642, alpha: 1)
             cell.layer.borderWidth = 0.5

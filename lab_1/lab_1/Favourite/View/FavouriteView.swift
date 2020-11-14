@@ -2,12 +2,19 @@ import UIKit
 
 class FavouriteView: UIViewController, FavouriteInputProtocol {
     
+    public var presenter: FavouriteOutputProtocol!
+    
     private var favouriteCollectionView: UICollectionView!
     private var countCells = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.fetchFavourite()
     }
     
     override func viewDidLayoutSubviews() {
@@ -17,6 +24,14 @@ class FavouriteView: UIViewController, FavouriteInputProtocol {
     
     private func setup() {
         setupCollectionView()
+    }
+    
+    func success() {
+        favouriteCollectionView.reloadData()
+    }
+    
+    func failure() {
+        
     }
     
     private func setupCollectionView() {
@@ -48,14 +63,14 @@ class FavouriteView: UIViewController, FavouriteInputProtocol {
 
 extension FavouriteView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Products.count
+        return presenter.getFavourite().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
-        let products = Products
-        let product = products[indexPath.item]
+        let product = presenter.getFavourite()[indexPath.item]
         cell.setup(product: product)
+        cell.delegate = self
         cell.layer.cornerRadius = 10
         cell.layer.borderColor = #colorLiteral(red: 0.7120197415, green: 0.7068746686, blue: 0.7159602642, alpha: 1)
         cell.layer.borderWidth = 0.5
@@ -87,4 +102,10 @@ extension FavouriteView: UICollectionViewDelegateFlowLayout {
 
 extension FavouriteView: UICollectionViewDelegate {
     
+}
+
+extension FavouriteView: ReloadDelegate {
+    func reloadCollectionView() {
+        presenter.fetchFavourite()
+    }
 }

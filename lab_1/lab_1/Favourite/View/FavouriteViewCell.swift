@@ -1,7 +1,13 @@
 import UIKit
 import Kingfisher
 
+protocol ReloadDelegate {
+    func reloadCollectionView()
+}
+
 class FavouriteViewCell: UICollectionViewCell {
+    public var delegate: ReloadDelegate!
+    
     var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleToFill
@@ -51,7 +57,7 @@ class FavouriteViewCell: UICollectionViewCell {
         return btn
     }()
     
-    var product: Product!
+    var product: FavouriteProduct!
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -62,7 +68,7 @@ class FavouriteViewCell: UICollectionViewCell {
         imageView.image = nil
     }
     
-    public func setup(product: Product) {
+    public func setup(product: FavouriteProduct) {
         self.product = product
         self.backgroundColor = .white
         setupImageView()
@@ -104,6 +110,7 @@ class FavouriteViewCell: UICollectionViewCell {
     }
     
     private func setupFavouriteButton() {
+        favoutireButton.addTarget(self, action: #selector(handleFavourite(sender:)), for: .touchUpInside)
         self.addSubview(favoutireButton)
         favoutireButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         favoutireButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -111,11 +118,25 @@ class FavouriteViewCell: UICollectionViewCell {
         favoutireButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
     }
     
+    @objc
+    private func handleFavourite(sender: UIButton) {
+        CoreDataManager.shared.deleteProductFromFavourite(product: self.product)
+        if let delegate = self.delegate {
+            delegate.reloadCollectionView()
+        }
+    }
+    
     private func setupBuyButton() {
+        buyButton.addTarget(self, action: #selector(handleBuy(sender:)), for: .touchUpInside)
         self.addSubview(buyButton)
         buyButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         buyButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
         buyButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
         buyButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+    }
+    
+    @objc
+    private func handleBuy(sender: UIButton) {
+        CoreDataManager.shared.addProductToCart(product: coreDataProductToProduct(product: self.product))
     }
 }

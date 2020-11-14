@@ -11,11 +11,25 @@ protocol Cellable {
     var typeCell: TypeCell! {get set}
 }
 
-func catalogProductToProduct(catalogProduct: CatalogProduct) -> Product {
-    return Product(name: catalogProduct.name ?? "default value",
-                   price: catalogProduct.price,
-                   type: catalogProduct.type ?? "default value",
-                   url: catalogProduct.url)
+func coreDataProductToProduct(product: CatalogProduct) -> Product {
+    return Product(name: product.name ?? "default value",
+                   price: product.price,
+                   type: product.type ?? "default value",
+                   url: product.url)
+}
+
+func coreDataProductToProduct(product: FavouriteProduct) -> Product {
+    return Product(name: product.name ?? "default value",
+                   price: product.price,
+                   type: product.type ?? "default value",
+                   url: product.url)
+}
+
+func coreDataProductToProduct(product: CartProduct) -> Product {
+    return Product(name: product.name ?? "default value",
+                   price: product.price,
+                   type: product.type ?? "default value",
+                   url: product.url)
 }
 
 struct Product: Cellable {

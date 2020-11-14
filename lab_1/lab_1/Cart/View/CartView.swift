@@ -1,6 +1,8 @@
 import UIKit
 
 class CartView: UIViewController, CartInputProtocol {
+    public var presenter: CartOutputProtocol!
+    
     private var profileView: ProfileView!
     private var cartTableView: UITableView!
     
@@ -16,9 +18,22 @@ class CartView: UIViewController, CartInputProtocol {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.fetchCart()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layout()
+    }
+    
+    func success() {
+        cartTableView.reloadData()
+    }
+    
+    func failure() {
+        
     }
     
     private func setup() {
@@ -107,71 +122,33 @@ class CartView: UIViewController, CartInputProtocol {
 
 extension CartView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.count
+        return presenter.getCart().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
-        switch cells[index].typeCell {
-        case .ProductTableViewCell:
-            let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartProductViewCell") as! CartProductViewCell
-            let product = cells[index] as! Product
-            cell.isUserInteractionEnabled = true
-            cell.setup(product: product)
-            return cell
-        case .ProfileTableViewCell:
-            let cell = cartTableView.dequeueReusableCell(withIdentifier: "SimpleCell")!
-            cell.addSubview(profileView)
-            layoutProfileView(cell: cell)
-            return cell
-        case .some(.EmptyTableViewCell):
-            let cell = UITableViewCell()
-            cell.backgroundColor = #colorLiteral(red: 0.9254901961, green: 0.9294117647, blue: 0.9450980392, alpha: 1)
-            return cell
-            
-        case .EmptyView:
-            let cell = UITableViewCell()
-            cell.addSubview(priceView)
-            layoutPriceView(cell: cell)
-            return cell
-        case .none:
-            return UITableViewCell()
-        
-        }
+        let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartProductViewCell") as! CartProductViewCell
+        let product = presenter.getCart()[indexPath.row]
+        cell.delegate = self
+        cell.isUserInteractionEnabled = true
+        cell.setup(product: product)
+        return cell
     }
 }
 
 extension CartView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let index = indexPath.row
-        switch cells[index].typeCell {
-        case .ProductTableViewCell:
-            return 120
-        case .ProfileTableViewCell:
-            return 80
-        case .some(.EmptyTableViewCell):
-            return 11
-        case .EmptyView:
-            return 55
-        case .none:
-            return 0
-        
-        }
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        switch cells[index].typeCell {
-        case .ProductTableViewCell:
-            tableView.deselectRow(at: indexPath, animated: true)
-        case .ProfileTableViewCell:
-            tableView.deselectRow(at: indexPath, animated: true)
-        case .some(.EmptyTableViewCell):
-            tableView.deselectRow(at: indexPath, animated: false)
-        case .EmptyView:
-            tableView.deselectRow(at: indexPath, animated: false)
-        case .none:
-            tableView.deselectRow(at: indexPath, animated: false)
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension CartView: ReloadDelegate {
+    func reloadCollectionView() {
+        presenter.fetchCart()
     }
 }

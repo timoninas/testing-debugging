@@ -15,11 +15,15 @@ final class Builder: BuilderProtocol {
     
     static func buildFavouriteModule() -> UIViewController {
         let view = FavouriteView()
+        let presenter: FavouriteOutputProtocol = FavouritePresenter(view: view)
+        view.presenter = presenter
         return view
     }
     
     static func buildCartModule() -> UIViewController {
         let view = CartView()
+        let presenter = CartPresenter(view: view)
+        view.presenter = presenter
         return view
     }
 }
