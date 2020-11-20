@@ -22,6 +22,11 @@ class CartView: UIViewController, CartInputProtocol {
         super.viewWillAppear(animated)
         presenter.fetchCart()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(cartTableView.contentSize.height)
+        print()
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

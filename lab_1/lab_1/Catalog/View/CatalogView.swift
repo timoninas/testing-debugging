@@ -152,7 +152,7 @@ extension CatalogView: UICollectionViewDataSource {
         if collectionView == typeProductCollectionView {
             return presenter.typesProducts.count
         } else {
-            guard let count = presenter.products?.count else { return 0 }
+            guard let count = presenter.getProducts()?.count else { return 0 }
             return count
         }
     }
@@ -168,7 +168,7 @@ extension CatalogView: UICollectionViewDataSource {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatalogViewCell", for: indexPath) as! CatalogViewCell
-            guard let products = presenter.products else {return UICollectionViewCell() }
+            guard let products = presenter.getProducts() else {return UICollectionViewCell() }
             let product = products[indexPath.item]
             cell.setup(catalogProduct: product)
             cell.layer.cornerRadius = 10
@@ -196,6 +196,10 @@ extension CatalogView: UICollectionViewDataSource {
                 presenter.resetProducts()
                 presenter.filterByType(indexType: index)
             }
+        } else {
+            guard let products = presenter.getProducts() else { return }
+            let product = products[indexPath.item]
+            presenter.tapOnProduct(product: product)
         }
     }
 }

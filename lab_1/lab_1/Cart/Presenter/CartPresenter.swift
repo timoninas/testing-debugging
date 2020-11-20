@@ -6,7 +6,7 @@ protocol CartInputProtocol: class {
 }
 
 protocol CartOutputProtocol: class {
-    init(view: CartInputProtocol)
+    init(view: CartInputProtocol, router: RouterCartProtocol)
     func fetchCart()
     func getCart() -> [CartProduct]
 }
@@ -15,9 +15,11 @@ protocol CartOutputProtocol: class {
 class CartPresenter: CartOutputProtocol {
     private var products: [CartProduct]!
     private var view: CartInputProtocol!
+    private let router: RouterCartProtocol?
     
-    required init(view: CartInputProtocol) {
+    required init(view: CartInputProtocol, router: RouterCartProtocol) {
         self.view = view
+        self.router = router
         self.products = [CartProduct]()
     }
     

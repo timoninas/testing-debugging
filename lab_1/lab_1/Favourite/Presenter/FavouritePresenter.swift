@@ -6,7 +6,7 @@ protocol FavouriteInputProtocol: class {
 }
 
 protocol FavouriteOutputProtocol: class {
-    init(view: FavouriteInputProtocol)
+    init(view: FavouriteInputProtocol, router: RouterFavouriteProtocol)
     func fetchFavourite()
     func getFavourite() -> [FavouriteProduct]
 }
@@ -14,10 +14,12 @@ protocol FavouriteOutputProtocol: class {
 
 class FavouritePresenter: FavouriteOutputProtocol {
     private let view: FavouriteInputProtocol!
+    private let router: RouterFavouriteProtocol?
     private var favouriteProducts: [FavouriteProduct]!
     
-    required init(view: FavouriteInputProtocol) {
+    required init(view: FavouriteInputProtocol, router: RouterFavouriteProtocol) {
         self.view = view
+        self.router = router
         favouriteProducts = [FavouriteProduct]()
     }
     

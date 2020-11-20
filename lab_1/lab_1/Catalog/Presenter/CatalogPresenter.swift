@@ -7,13 +7,14 @@ protocol CatalogInputProtocol: class {
 }
 
 protocol CatalogOutputProtocol: class {
-    init(view: CatalogInputProtocol, networkService: NetworkService)
+    init(view: CatalogInputProtocol, networkService: NetworkService, router: RouterCatalogProtocol)
     func resetProducts()
     func fetchProducts()
-    var products: [CatalogProduct]? {get set}
     var typesProducts: [String] {get set}
     func filterByType(indexType: Int)
     func sortBy(type: TypeSort)
+    func getProducts() -> [CatalogProduct]?
+    func tapOnProduct(product: CatalogProduct)
 }
 
 enum TypeSort {
@@ -24,14 +25,16 @@ enum TypeSort {
 
 class CatalogPresenter: CatalogOutputProtocol {
     let view: CatalogInputProtocol
+    let router: RouterCatalogProtocol?
     var initialProducts: [CatalogProduct]?
     var products: [CatalogProduct]?
     var networkService: NetworkService!
     var typesProducts: [String] = ["Filter", "All", "Clothes", "Shoes", "Accessories"]
     
-    required init(view: CatalogInputProtocol, networkService: NetworkService) {
+    required init(view: CatalogInputProtocol, networkService: NetworkService, router: RouterCatalogProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
     }
     
     func fetchProducts() {
@@ -49,9 +52,17 @@ class CatalogPresenter: CatalogOutputProtocol {
         }
     }
     
+    func getProducts() -> [CatalogProduct]? {
+        return products
+    }
+    
     func resetProducts() {
         products = initialProducts
         view.reloadContent()
+    }
+    
+    func tapOnProduct(product: CatalogProduct) {
+        router?.showDetailProduct(product: coreDataProductToProduct(product: product))
     }
     
     func filterByType(indexType index: Int) {
