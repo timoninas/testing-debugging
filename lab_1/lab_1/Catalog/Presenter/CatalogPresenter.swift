@@ -1,13 +1,12 @@
 import Foundation
 
 protocol CatalogInputProtocol: class {
-    func reloadContent()
     func success()
     func failure()
 }
 
 protocol CatalogOutputProtocol: class {
-    init(view: CatalogInputProtocol, networkService: NetworkService, router: RouterCatalogProtocol)
+    init(view: CatalogInputProtocol, networkService: NetworkServiceProtocol, router: RouterCatalogProtocol)
     func resetProducts()
     func fetchProducts()
     var typesProducts: [String] {get set}
@@ -28,10 +27,10 @@ class CatalogPresenter: CatalogOutputProtocol {
     let router: RouterCatalogProtocol?
     var initialProducts: [CatalogProduct]?
     var products: [CatalogProduct]?
-    var networkService: NetworkService!
+    var networkService: NetworkServiceProtocol!
     var typesProducts: [String] = ["Filter", "All", "Clothes", "Shoes", "Accessories"]
     
-    required init(view: CatalogInputProtocol, networkService: NetworkService, router: RouterCatalogProtocol) {
+    required init(view: CatalogInputProtocol, networkService: NetworkServiceProtocol, router: RouterCatalogProtocol) {
         self.view = view
         self.networkService = networkService
         self.router = router
@@ -58,7 +57,7 @@ class CatalogPresenter: CatalogOutputProtocol {
     
     func resetProducts() {
         products = initialProducts
-        view.reloadContent()
+        view.success()
     }
     
     func tapOnProduct(product: CatalogProduct) {
@@ -70,7 +69,7 @@ class CatalogPresenter: CatalogOutputProtocol {
             if (product.type == typesProducts[index].lowercased()) { return true }
             return false
         })
-        view.reloadContent()
+        view.success()
     }
     
     func sortBy(type: TypeSort) {
@@ -97,6 +96,6 @@ class CatalogPresenter: CatalogOutputProtocol {
                 return false
             })
         }
-        view.reloadContent()
+        view.success()
     }
 }

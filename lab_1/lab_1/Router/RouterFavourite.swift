@@ -8,7 +8,7 @@ protocol RouterFavouriteMain {
 
 protocol RouterFavouriteProtocol: RouterFavouriteMain {
     func initialViewController()
-    func showDetailProduct()
+    func showDetailProduct(product: Product?)
     func popToRoot()
 }
 
@@ -27,7 +27,7 @@ class RouterFavourite: RouterFavouriteProtocol {
         navigationController.viewControllers = [favouriteMVP]
     }
     
-    func showDetailProduct() {
+    func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let favouriteMVP = assemblyBuilder?.buildFavouriteModule(router: self) else { return }
         fatalError("Not implemented")

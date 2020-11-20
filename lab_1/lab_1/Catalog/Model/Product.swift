@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 enum TypeCell {
     case ProfileTableViewCell
@@ -30,6 +31,18 @@ func coreDataProductToProduct(product: CartProduct) -> Product {
                    price: product.price,
                    type: product.type ?? "default value",
                    url: product.url)
+}
+
+func productToCoreDataCatlogProduct(product: Product) -> CatalogProduct {
+    guard let entity = NSEntityDescription.entity(forEntityName: "CatalogProduct", in: NSManagedObjectContext()) else { return CatalogProduct() }
+    let catalogProduct = CatalogProduct(entity: entity, insertInto: nil)
+    
+    catalogProduct.setValue(product.name, forKey: "name")
+    catalogProduct.setValue(product.price, forKey: "price")
+    catalogProduct.setValue(product.type, forKey: "type")
+    catalogProduct.setValue(product.url, forKey: "url")
+    
+    return catalogProduct
 }
 
 struct Product: Cellable {

@@ -30,6 +30,8 @@
 		77A121752567AFB10098EC46 /* RouterFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A121742567AFB10098EC46 /* RouterFavourite.swift */; };
 		77A1218C2567B0120098EC46 /* BuilderCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1218B2567B0120098EC46 /* BuilderCatalog.swift */; };
 		77A121942567B04C0098EC46 /* BuilderFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A121932567B04C0098EC46 /* BuilderFavourite.swift */; };
+		77A1219F2567C4850098EC46 /* CatalogPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1219E2567C4850098EC46 /* CatalogPresenterTest.swift */; };
+		77A121AE2567D46B0098EC46 /* RouterCatalogTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A121AD2567D46B0098EC46 /* RouterCatalogTest.swift */; };
 		77A64F86255D1C9D00FF6E70 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */; };
 		77AD6E322539C7AE00E0D02B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD6E312539C7AE00E0D02B /* AppDelegate.swift */; };
 		77AD6E342539C7AE00E0D02B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD6E332539C7AE00E0D02B /* SceneDelegate.swift */; };
@@ -84,6 +86,8 @@
 		77A121742567AFB10098EC46 /* RouterFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterFavourite.swift; sourceTree = "<group>"; };
 		77A1218B2567B0120098EC46 /* BuilderCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderCatalog.swift; sourceTree = "<group>"; };
 		77A121932567B04C0098EC46 /* BuilderFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderFavourite.swift; sourceTree = "<group>"; };
+		77A1219E2567C4850098EC46 /* CatalogPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenterTest.swift; sourceTree = "<group>"; };
+		77A121AD2567D46B0098EC46 /* RouterCatalogTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterCatalogTest.swift; sourceTree = "<group>"; };
 		77A64F85255D1C9D00FF6E70 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		77AD6E2E2539C7AE00E0D02B /* lab_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AD6E312539C7AE00E0D02B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +233,22 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		77A121A32567C48C0098EC46 /* TestCatalogModule */ = {
+			isa = PBXGroup;
+			children = (
+				77A1219E2567C4850098EC46 /* CatalogPresenterTest.swift */,
+			);
+			path = TestCatalogModule;
+			sourceTree = "<group>";
+		};
+		77A121B22567D46E0098EC46 /* TestRouters */ = {
+			isa = PBXGroup;
+			children = (
+				77A121AD2567D46B0098EC46 /* RouterCatalogTest.swift */,
+			);
+			path = TestRouters;
+			sourceTree = "<group>";
+		};
 		77AD6E252539C7AD00E0D02B = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +294,8 @@
 		77AD6E4A2539C7B100E0D02B /* lab_1Tests */ = {
 			isa = PBXGroup;
 			children = (
+				77A121B22567D46E0098EC46 /* TestRouters */,
+				77A121A32567C48C0098EC46 /* TestCatalogModule */,
 				77AD6E4B2539C7B100E0D02B /* lab_1Tests.swift */,
 				77AD6E4D2539C7B100E0D02B /* Info.plist */,
 			);
@@ -500,6 +522,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A1219F2567C4850098EC46 /* CatalogPresenterTest.swift in Sources */,
+				77A121AE2567D46B0098EC46 /* RouterCatalogTest.swift in Sources */,
 				77AD6E4C2539C7B100E0D02B /* lab_1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

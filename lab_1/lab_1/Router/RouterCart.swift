@@ -8,7 +8,7 @@ protocol RouterCardMain {
 
 protocol RouterCartProtocol: RouterCardMain {
     func initialViewController()
-    func showDetailProduct()
+    func showDetailProduct(product: Product?)
     func popToRoot()
 }
 
@@ -27,7 +27,7 @@ class RouterCart: RouterCartProtocol {
         navigationController.viewControllers = [cartMVP]
     }
     
-    func showDetailProduct() {
+    func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let cartView = assemblyBuilder?.buildCartModule(router: self) else { return }
         fatalError("Not implemented")

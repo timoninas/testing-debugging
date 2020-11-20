@@ -8,7 +8,7 @@ protocol RouterCatalogMain {
 
 protocol RouterCatalogProtocol: RouterCatalogMain {
     func initialViewController()
-    func showDetailProduct(product: Product)
+    func showDetailProduct(product: Product?)
     func popToRoot()
 }
 
@@ -27,11 +27,10 @@ class RouterCatalog: RouterCatalogProtocol {
         navigationController.viewControllers = [catalogMVP]
     }
     
-    func showDetailProduct(product: Product) {
+    func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let catalogMVP = assemblyBuilder?.buildCatalogModule(router: self) else { return }
-        fatalError("Not implemented")
-        // navigationController.pushViewController(UIViewController, animated: Bool)
+        navigationController.pushViewController(UIViewController(), animated: true)
     }
     
     func popToRoot() {
