@@ -3,42 +3,60 @@ import XCTest
 import CoreData
 @testable import lab_1
 
-class MockCatalogView: CatalogInputProtocol {
-    func success() {
-        
+class MockCatalogPresenter: CatalogOutputProtocol {
+    var view: CatalogInputProtocol!
+    var networkService: NetworkServiceProtocol!
+    var router: RouterCatalogProtocol!
+    
+    required init(view: CatalogInputProtocol, networkService: NetworkServiceProtocol, router: RouterCatalogProtocol) {
+        self.view = view
+        self.networkService = networkService
+        self.router = router
+        self.products = nil
     }
     
-    func failure() {
-        
-    }
-}
-
-class MockNetworkService: NetworkServiceProtocol {
-    var products: [Product]!
+    public var products: [CatalogProduct]?
     
-    init() {}
-    
-    convenience init(products: [Product]) {
-        self.init()
-        self.products = [Product]()
-        self.products.append(contentsOf: products)
+    func resetProducts() {
+        fetchProducts()
     }
     
-    func fetchCatalog(completion: @escaping (Result<[CatalogProduct]?, Error>) -> ()) {
-        if let products = self.products {
-            var catalogProducts = [CatalogProduct]()
-            catalogProducts.append(CatalogProduct())
-            completion(.success(catalogProducts))
-        } else {
-            let error = NSError(domain: "", code: 0 , userInfo: nil)
-            completion(.failure(error))
-        }
+    func fetchProducts() {
+        products = [CatalogProduct(), CatalogProduct(), CatalogProduct()]
+    }
+    
+    var typesProducts: [String] {
+        return ["dummy1", "dummy2", "dummy3"]
+    }
+    
+    public var indexType: Int?
+    
+    func filterByType(indexType: Int) {
+        self.products = [CatalogProduct]()
+        self.indexType = indexType
+    }
+    
+    public var typeSort: TypeSort?
+    
+    func sortBy(type: TypeSort) {
+        self.products = [CatalogProduct]()
+        self.typeSort = type
+    }
+    
+    func getProducts() -> [CatalogProduct]? {
+        return products
+    }
+    
+    public var typedProduct: CatalogProduct?
+    
+    func tapOnProduct(product: CatalogProduct) {
+        self.typedProduct = product
     }
 }
 
 class CatalogPresenterTest: XCTestCase {
-    var view: MockCatalogView!
-    var presenter: CatalogOutputProtocol!
+    var view: CatalogInputProtocol!
+    var presenter: MockCatalogPresenter!
     var networkService: NetworkServiceProtocol!
     var router: RouterCatalogProtocol!
     var product: Product!
@@ -47,6 +65,7 @@ class CatalogPresenterTest: XCTestCase {
         let navigationController = UINavigationController()
         let builder = BuilderCatalog()
         router = RouterCatalog(navigationController: navigationController, builder: builder)
+        networkService = NetworkService()
     }
     
     override func tearDown() {
@@ -55,53 +74,81 @@ class CatalogPresenterTest: XCTestCase {
         networkService = nil
     }
     
-    func testGetSuccess() throws {
-        let product = Product(name: "Dummy", price: 0, type: "clothes")
+    func testSortFilter() throws {
+        // Arrange
+        let view = CatalogView()
+        presenter = MockCatalogPresenter(view: view, networkService: networkService, router: router)
+        view.presenter = presenter
         
-        view = MockCatalogView()
-        networkService = MockNetworkService(products: [product])
+        let indexType = 9999
+        let type = TypeSort.HighToLow
         
-        presenter = CatalogPresenter(view: view, networkService: networkService, router: router)
+        // Act
+        view.presenter.filterByType(indexType: indexType)
+        view.presenter.sortBy(type: type)
         
-        var geting_roducts: [CatalogProduct]?
+        // Assert
+        XCTAssertNotNil(presenter.indexType)
+        XCTAssertEqual(presenter.indexType, indexType)
         
-        networkService.fetchCatalog { (result) in
-            switch result {
-            case .success(let products):
-                geting_roducts = products
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
-        XCTAssertNotEqual(geting_roducts?.count, 0)
+        XCTAssertNotNil(presenter.typeSort)
+        XCTAssertEqual(presenter.typeSort, type)
     }
     
-    func testGetFailure() throws {
-        view = MockCatalogView()
-        networkService = MockNetworkService()
+    func testfetchProducts() throws {
+        // Arrange
+        let view = CatalogView()
+        presenter = MockCatalogPresenter(view: view, networkService: networkService, router: router)
+        view.presenter = presenter
         
-        presenter = CatalogPresenter(view: view, networkService: networkService, router: router)
+        // Act
+        XCTAssertEqual(presenter.products, nil)
+        view.presenter.fetchProducts()
         
-        var catchError: Error?
-        
-        networkService.fetchCatalog { (result) in
-            switch result {
-            case .success(let products):
-                print("Success")
-            case .failure(let error):
-                catchError = error
-            }
-        }
-        
-        XCTAssertNotNil(catchError)
+        // Assert
+        XCTAssertNotEqual(presenter.products, nil)
     }
     
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testResetProducts() throws {
+        // Arrange
+        let view = CatalogView()
+        presenter = MockCatalogPresenter(view: view, networkService: networkService, router: router)
+        view.presenter = presenter
+        
+        // Act
+        XCTAssertEqual(presenter.products, nil)
+        view.presenter.resetProducts()
+        
+        // Assert
+        XCTAssertNotEqual(presenter.products, nil)
     }
     
+    func testGetProducts() throws {
+        // Arrange
+        let view = CatalogView()
+        presenter = MockCatalogPresenter(view: view, networkService: networkService, router: router)
+        view.presenter = presenter
+        
+        // Act
+        XCTAssertEqual(presenter.getProducts(), nil)
+        view.presenter.fetchProducts()
+        
+        // Assert
+        XCTAssertNotEqual(presenter.getProducts(), nil)
+    }
+    
+    func testTapOnProduct() throws {
+        // Arrange
+        let view = CatalogView()
+        presenter = MockCatalogPresenter(view: view, networkService: networkService, router: router)
+        view.presenter = presenter
+        let product = CatalogProduct()
+        
+        // Act
+        XCTAssertEqual(presenter.getProducts(), nil)
+        view.presenter.tapOnProduct(product: product)
+        
+        // Assert
+        XCTAssertEqual(presenter.typedProduct, product)
+    }
 }

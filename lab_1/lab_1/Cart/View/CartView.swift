@@ -7,8 +7,6 @@ class CartView: UIViewController, CartInputProtocol {
     private var cartTableView: UITableView!
     
     private var startProductIndex: Int = 0
-    
-    private var priceView: CellableView!
     private var priceLabel: UILabel!
     
     private var cells = [Cellable]()
@@ -44,7 +42,6 @@ class CartView: UIViewController, CartInputProtocol {
     private func setup() {
         setupProfileView()
         setupPriceLabel()
-        setupPriceView()
         setupCartTableView()
         setupCells()
     }
@@ -55,10 +52,6 @@ class CartView: UIViewController, CartInputProtocol {
         profileView.setup()
     }
     
-    func setupPriceView() {
-        priceView = CellableView()
-        priceView.translatesAutoresizingMaskIntoConstraints = false
-    }
     
     func setupPriceLabel() {
         priceLabel = UILabel()
@@ -70,7 +63,7 @@ class CartView: UIViewController, CartInputProtocol {
     
     private func setupCartTableView() {
         cartTableView = UITableView()
-        cartTableView.backgroundColor = .systemPink
+        cartTableView.backgroundColor = .white
         cartTableView.separatorInset = .zero
         cartTableView.delegate = self
         cartTableView.dataSource = self
@@ -81,10 +74,7 @@ class CartView: UIViewController, CartInputProtocol {
     }
     
     private func setupCells() {
-        cells += [EmptyTableViewCell()]
         cells += [profileView]
-        cells += [EmptyTableViewCell()]
-        cells += [CellableView()]
         cells += Products
     }
     
@@ -92,7 +82,6 @@ class CartView: UIViewController, CartInputProtocol {
         navigationItem.title = "Your cart"
         self.view.backgroundColor = .white
         layoutCartTableView()
-        layoutPriceLabel()
     }
     
     private func layoutProfileView(cell: UITableViewCell) {
@@ -107,21 +96,6 @@ class CartView: UIViewController, CartInputProtocol {
         cartTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         cartTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         cartTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-    }
-    
-    private func layoutPriceLabel() {
-        priceView.addSubview(priceLabel)
-        priceLabel.topAnchor.constraint(equalTo: priceView.topAnchor, constant: 0).isActive = true
-        priceLabel.leftAnchor.constraint(equalTo: priceView.leftAnchor, constant: 10).isActive = true
-        priceLabel.bottomAnchor.constraint(equalTo: priceView.bottomAnchor, constant: 0).isActive = true
-        priceLabel.rightAnchor.constraint(equalTo: priceView.rightAnchor, constant: -10).isActive = true
-    }
-    
-    private func layoutPriceView(cell: UITableViewCell) {
-        priceView.topAnchor.constraint(equalTo: cell.topAnchor, constant: 0).isActive = true
-        priceView.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: 0).isActive = true
-        priceView.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: 0).isActive = true
-        priceView.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 0).isActive = true
     }
 }
 
@@ -154,6 +128,8 @@ extension CartView: UITableViewDelegate {
 
 extension CartView: ReloadDelegate {
     func reloadCollectionView() {
-        presenter.fetchCart()
+        DispatchQueue.main.async { [self] in
+            presenter.fetchCart()
+        }
     }
 }

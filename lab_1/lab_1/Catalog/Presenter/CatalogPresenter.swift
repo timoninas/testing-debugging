@@ -9,7 +9,7 @@ protocol CatalogOutputProtocol: class {
     init(view: CatalogInputProtocol, networkService: NetworkServiceProtocol, router: RouterCatalogProtocol)
     func resetProducts()
     func fetchProducts()
-    var typesProducts: [String] {get set}
+    var typesProducts: [String] { get }
     func filterByType(indexType: Int)
     func sortBy(type: TypeSort)
     func getProducts() -> [CatalogProduct]?
@@ -28,7 +28,11 @@ class CatalogPresenter: CatalogOutputProtocol {
     var initialProducts: [CatalogProduct]?
     var products: [CatalogProduct]?
     var networkService: NetworkServiceProtocol!
-    var typesProducts: [String] = ["Filter", "All", "Clothes", "Shoes", "Accessories"]
+    var _typesProducts: [String] = ["Filter", "All", "Clothes", "Shoes", "Accessories"]
+    
+    lazy var typesProducts: [String] = {
+        return _typesProducts
+    }()
     
     required init(view: CatalogInputProtocol, networkService: NetworkServiceProtocol, router: RouterCatalogProtocol) {
         self.view = view
