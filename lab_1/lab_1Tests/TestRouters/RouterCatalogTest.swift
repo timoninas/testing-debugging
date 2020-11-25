@@ -28,13 +28,6 @@ class RouterCatalogTest: XCTestCase {
         router.showDetailProduct(product: nil)
         let detailViewController = navigationController.presentedVC
         XCTAssertNotNil(detailViewController)
-//        XCTAssertTrue(detailViewController is DetailVC)
-    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        XCTAssertTrue(detailViewController is DetailView)
     }
 }

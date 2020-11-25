@@ -30,7 +30,7 @@ class RouterCart: RouterCartProtocol {
     func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let cartView = assemblyBuilder?.buildCartModule(router: self) else { return }
-        fatalError("Not implemented")
+        navigationController.pushViewController(DetailView(), animated: true)
         // navigationController.pushViewController(UIViewController, animated: Bool)
     }
     

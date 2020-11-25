@@ -36,7 +36,7 @@ class CartView: UIViewController, CartInputProtocol {
     }
     
     func failure() {
-        
+        cartTableView.reloadData()
     }
     
     private func setup() {
@@ -107,7 +107,7 @@ extension CartView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
         let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartProductViewCell") as! CartProductViewCell
-        let product = presenter.getCart()[indexPath.row]
+        let product = presenter.getCart()[index]
         cell.delegate = self
         cell.isUserInteractionEnabled = true
         cell.setup(product: product)
@@ -122,6 +122,7 @@ extension CartView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
+        presenter.tapOnProduct(product: presenter.getCart()[index])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

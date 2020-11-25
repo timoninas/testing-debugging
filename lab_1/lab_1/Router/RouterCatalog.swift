@@ -30,7 +30,7 @@ class RouterCatalog: RouterCatalogProtocol {
     func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let catalogMVP = assemblyBuilder?.buildCatalogModule(router: self) else { return }
-        navigationController.pushViewController(UIViewController(), animated: true)
+        navigationController.pushViewController(DetailView(), animated: true)
     }
     
     func popToRoot() {

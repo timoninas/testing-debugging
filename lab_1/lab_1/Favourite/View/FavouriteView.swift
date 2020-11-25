@@ -31,7 +31,7 @@ class FavouriteView: UIViewController, FavouriteInputProtocol {
     }
     
     func failure() {
-        
+        favouriteCollectionView.reloadData()
     }
     
     private func setupCollectionView() {
@@ -63,12 +63,13 @@ class FavouriteView: UIViewController, FavouriteInputProtocol {
 
 extension FavouriteView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.getFavourite().count
+        return presenter.getFavouriteProducts().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
-        let product = presenter.getFavourite()[indexPath.item]
+        let products = presenter.getFavouriteProducts()
+        let product = products[indexPath.item]
         cell.setup(product: product)
         cell.delegate = self
         cell.layer.cornerRadius = 10
@@ -101,7 +102,9 @@ extension FavouriteView: UICollectionViewDelegateFlowLayout {
 }
 
 extension FavouriteView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.tapOnProduct(product: presenter.getFavouriteProducts()[indexPath.item])
+    }
 }
 
 extension FavouriteView: ReloadDelegate {

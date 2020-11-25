@@ -68,6 +68,7 @@ class CatalogViewTest: XCTestCase {
             switch result {
             case .success(let products):
                 geting_roducts = products
+                self.view.success()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -90,6 +91,7 @@ class CatalogViewTest: XCTestCase {
                 print("Success")
             case .failure(let error):
                 catchError = error
+                self.view.failure()
             }
         }
         

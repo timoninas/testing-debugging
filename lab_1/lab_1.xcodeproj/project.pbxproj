@@ -12,6 +12,10 @@
 		770E3444256E51C1006A74A4 /* FavouritePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E3443256E51C1006A74A4 /* FavouritePresenterTest.swift */; };
 		770E3450256E51DA006A74A4 /* CartViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E344F256E51DA006A74A4 /* CartViewTest.swift */; };
 		770E3455256E51E9006A74A4 /* CartPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E3454256E51E9006A74A4 /* CartPresenterTest.swift */; };
+		770E3464256E5DDF006A74A4 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E3463256E5DDE006A74A4 /* FilterService.swift */; };
+		770E3469256E654C006A74A4 /* RouterCartTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E3468256E654C006A74A4 /* RouterCartTest.swift */; };
+		770E346E256E6559006A74A4 /* RouterFavouriteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E346D256E6559006A74A4 /* RouterFavouriteTest.swift */; };
+		770E3476256E66B4006A74A4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770E3475256E66B4006A74A4 /* DetailView.swift */; };
 		772218D0255F1E62009F21BF /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772218CF255F1E62009F21BF /* NetworkService.swift */; };
 		772C12E1254B60260010A35C /* CatalogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E0254B60260010A35C /* CatalogViewCell.swift */; };
 		772C12E6254C08570010A35C /* TypeProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E5254C08570010A35C /* TypeProductViewCell.swift */; };
@@ -72,6 +76,10 @@
 		770E3443256E51C1006A74A4 /* FavouritePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePresenterTest.swift; sourceTree = "<group>"; };
 		770E344F256E51DA006A74A4 /* CartViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewTest.swift; sourceTree = "<group>"; };
 		770E3454256E51E9006A74A4 /* CartPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterTest.swift; sourceTree = "<group>"; };
+		770E3463256E5DDE006A74A4 /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		770E3468256E654C006A74A4 /* RouterCartTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterCartTest.swift; sourceTree = "<group>"; };
+		770E346D256E6559006A74A4 /* RouterFavouriteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterFavouriteTest.swift; sourceTree = "<group>"; };
+		770E3475256E66B4006A74A4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		772218CF255F1E62009F21BF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		772C12E0254B60260010A35C /* CatalogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewCell.swift; sourceTree = "<group>"; };
 		772C12E5254C08570010A35C /* TypeProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProductViewCell.swift; sourceTree = "<group>"; };
@@ -158,10 +166,19 @@
 			path = TestCartModule;
 			sourceTree = "<group>";
 		};
+		770E347A256E66B7006A74A4 /* AdditionalViews */ = {
+			isa = PBXGroup;
+			children = (
+				770E3475256E66B4006A74A4 /* DetailView.swift */,
+			);
+			path = AdditionalViews;
+			sourceTree = "<group>";
+		};
 		772218D4255F1E65009F21BF /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				772218CF255F1E62009F21BF /* NetworkService.swift */,
+				770E3463256E5DDE006A74A4 /* FilterService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -270,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				77A121AD2567D46B0098EC46 /* RouterCatalogTest.swift */,
+				770E346D256E6559006A74A4 /* RouterFavouriteTest.swift */,
+				770E3468256E654C006A74A4 /* RouterCartTest.swift */,
 			);
 			path = TestRouters;
 			sourceTree = "<group>";
@@ -299,6 +318,7 @@
 			children = (
 				77AD6E312539C7AE00E0D02B /* AppDelegate.swift */,
 				77AD6E332539C7AE00E0D02B /* SceneDelegate.swift */,
+				770E347A256E66B7006A74A4 /* AdditionalViews */,
 				77878AEA255FBC90007FE155 /* Managers */,
 				772218D4255F1E65009F21BF /* Services */,
 				77A121872567AFF00098EC46 /* Router */,
@@ -526,8 +546,10 @@
 				77A121752567AFB10098EC46 /* RouterFavourite.swift in Sources */,
 				77AFB24B2550214A00FE6B62 /* CartView.swift in Sources */,
 				776758172550B25F0049642A /* FavouriteViewCell.swift in Sources */,
+				770E3476256E66B4006A74A4 /* DetailView.swift in Sources */,
 				776758212550BB680049642A /* ProfileView.swift in Sources */,
 				774D3303253ED64C001D451F /* BuilderCart.swift in Sources */,
+				770E3464256E5DDF006A74A4 /* FilterService.swift in Sources */,
 				7767581C2550BAAE0049642A /* CartProductViewCell.swift in Sources */,
 				772218D0255F1E62009F21BF /* NetworkService.swift in Sources */,
 				77AFB23B25501FF800FE6B62 /* FavouriteView.swift in Sources */,
@@ -545,12 +567,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				770E346E256E6559006A74A4 /* RouterFavouriteTest.swift in Sources */,
 				770E3434256E4A00006A74A4 /* CatalogPresenterTest.swift in Sources */,
 				77A1219F2567C4850098EC46 /* CatalogViewTest.swift in Sources */,
 				77A121AE2567D46B0098EC46 /* RouterCatalogTest.swift in Sources */,
 				770E3450256E51DA006A74A4 /* CartViewTest.swift in Sources */,
 				770E3455256E51E9006A74A4 /* CartPresenterTest.swift in Sources */,
 				77AD6E4C2539C7B100E0D02B /* lab_1Tests.swift in Sources */,
+				770E3469256E654C006A74A4 /* RouterCartTest.swift in Sources */,
 				770E3444256E51C1006A74A4 /* FavouritePresenterTest.swift in Sources */,
 				770E343F256E51AF006A74A4 /* FavouriteViewTest.swift in Sources */,
 			);

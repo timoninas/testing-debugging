@@ -9,8 +9,8 @@ protocol CartOutputProtocol: class {
     init(view: CartInputProtocol, router: RouterCartProtocol)
     func fetchCart()
     func getCart() -> [CartProduct]
+    func tapOnProduct(product: CartProduct)
 }
-
 
 class CartPresenter: CartOutputProtocol {
     private var products: [CartProduct]!
@@ -29,11 +29,16 @@ class CartPresenter: CartOutputProtocol {
             self.products = response
             view.success()
         } else {
+            self.products = response
             view.failure()
         }
     }
     
     func getCart() -> [CartProduct] {
         return products
+    }
+    
+    func tapOnProduct(product: CartProduct) {
+        router?.showDetailProduct(product: coreDataProductToProduct(product: product))
     }
 }

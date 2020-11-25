@@ -8,31 +8,36 @@ protocol FavouriteInputProtocol: class {
 protocol FavouriteOutputProtocol: class {
     init(view: FavouriteInputProtocol, router: RouterFavouriteProtocol)
     func fetchFavourite()
-    func getFavourite() -> [FavouriteProduct]
+    func getFavouriteProducts() -> [FavouriteProduct]
+    func tapOnProduct(product: FavouriteProduct)
 }
 
 
 class FavouritePresenter: FavouriteOutputProtocol {
     private let view: FavouriteInputProtocol!
     private let router: RouterFavouriteProtocol?
-    private var favouriteProducts: [FavouriteProduct]!
+    private var _favouriteProducts: [FavouriteProduct]!
+    
+    func getFavouriteProducts() -> [FavouriteProduct] {
+        return _favouriteProducts
+    }
     
     required init(view: FavouriteInputProtocol, router: RouterFavouriteProtocol) {
         self.view = view
         self.router = router
-        favouriteProducts = [FavouriteProduct]()
+        _favouriteProducts = [FavouriteProduct]()
     }
     
     func fetchFavourite() {
-        favouriteProducts = CoreDataManager.shared.getFavourite()
-        if (!favouriteProducts.isEmpty) {
+        _favouriteProducts = CoreDataManager.shared.getFavourite()
+        if (!_favouriteProducts.isEmpty) {
             view.success()
         } else {
             view.failure()
         }
     }
     
-    func getFavourite() -> [FavouriteProduct] {
-        return favouriteProducts
+    func tapOnProduct(product: FavouriteProduct) {
+        router?.showDetailProduct(product: coreDataProductToProduct(product: product))
     }
 }
