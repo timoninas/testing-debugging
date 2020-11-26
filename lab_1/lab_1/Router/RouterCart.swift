@@ -30,7 +30,9 @@ class RouterCart: RouterCartProtocol {
     func showDetailProduct(product: Product?) {
         guard let navigationController = navigationController else { return }
         guard let cartView = assemblyBuilder?.buildCartModule(router: self) else { return }
-        navigationController.pushViewController(DetailView(), animated: true)
+        let detailV = DetailView()
+        detailV.product = product
+        navigationController.pushViewController(detailV, animated: true)
         // navigationController.pushViewController(UIViewController, animated: Bool)
     }
     
