@@ -7,7 +7,7 @@ protocol BuilderFavouriteProtocol: class {
 final class BuilderFavourite: BuilderFavouriteProtocol {
     func buildFavouriteModule(router: RouterFavouriteProtocol) -> UIViewController {
         let view = FavouriteView()
-        let presenter: FavouriteOutputProtocol = FavouritePresenter(view: view, router: router)
+        let presenter: FavouriteOutputProtocol = FavouritePresenter(view: view, coreDataManager: CoreDataManager.shared, router: router)
         view.presenter = presenter
         return view
     }

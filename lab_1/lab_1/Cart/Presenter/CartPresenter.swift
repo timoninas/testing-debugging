@@ -6,7 +6,7 @@ protocol CartInputProtocol: class {
 }
 
 protocol CartOutputProtocol: class {
-    init(view: CartInputProtocol, router: RouterCartProtocol)
+    init(view: CartInputProtocol, coreDataManager: CartAccessProtocol, router: RouterCartProtocol)
     func fetchCart()
     func getCart() -> [CartProduct]
     func tapOnProduct(product: CartProduct)
@@ -16,15 +16,17 @@ class CartPresenter: CartOutputProtocol {
     private var products: [CartProduct]!
     private var view: CartInputProtocol!
     private let router: RouterCartProtocol?
+    private let coreDataManager: CartAccessProtocol!
     
-    required init(view: CartInputProtocol, router: RouterCartProtocol) {
+    required init(view: CartInputProtocol, coreDataManager: CartAccessProtocol, router: RouterCartProtocol) {
         self.view = view
         self.router = router
         self.products = [CartProduct]()
+        self.coreDataManager = coreDataManager
     }
     
     func fetchCart() {
-        let response = CoreDataManager.shared.getCart()
+        let response = coreDataManager.getCart()
         if !response.isEmpty {
             self.products = response
             view.success()

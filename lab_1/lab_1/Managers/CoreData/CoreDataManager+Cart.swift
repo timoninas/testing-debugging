@@ -1,7 +1,11 @@
 import UIKit
 import CoreData
 
-extension CoreDataManager {
+protocol CartAccessProtocol {
+    func getCart() -> [CartProduct]
+}
+
+extension CoreDataManager: CartAccessProtocol {
     func getCart() -> [CartProduct] {
         let context = self.viewContext
         let fetchRequest = NSFetchRequest<CartProduct>(entityName: "CartProduct")

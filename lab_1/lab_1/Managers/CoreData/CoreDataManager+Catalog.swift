@@ -1,7 +1,11 @@
 import Foundation
 import CoreData
 
-extension CoreDataManager {
+protocol CatalogAccessProtocol {
+    func getCatalog() -> [CatalogProduct]
+}
+
+extension CoreDataManager: CatalogAccessProtocol {
     func getCatalog() -> [CatalogProduct] {
         let context = self.viewContext
         let fetchRequest = NSFetchRequest<CatalogProduct>(entityName: "CatalogProduct")

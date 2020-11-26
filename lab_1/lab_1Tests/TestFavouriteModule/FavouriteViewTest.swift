@@ -2,26 +2,80 @@ import XCTest
 import CoreData
 @testable import lab_1
 
-class FavouriteViewTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class MockFavouriteView: FavouriteInputProtocol {
+    public var isSuccess: Bool?
+    
+    func success() {
+        isSuccess = true
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func failure() {
+        isSuccess = false
     }
+}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class MockCoreDataForFavourite: FavouriteAccessProtocol {
+    public var isNeedSuccess: Bool = true
+    
+    func getFavourite() -> [FavouriteProduct] {
+        if isNeedSuccess == true {
+            return [FavouriteProduct()]
+        } else {
+            return [FavouriteProduct]()
         }
     }
+}
 
+extension FavouritePresenter {
+    func setZeroValueProducts() {
+        self._favouriteProducts = [FavouriteProduct]()
+    }
+}
+
+class FavouriteViewTest: XCTestCase {
+    var view: MockFavouriteView!
+    var presenter: FavouriteOutputProtocol!
+    var router: RouterFavouriteProtocol!
+    var coreDataManager: MockCoreDataForFavourite!
+    
+    override func setUp() {
+        let navigationController = UINavigationController()
+        let builder = BuilderFavourite()
+        router = RouterFavourite(navigationController: navigationController, builder: builder)
+    }
+    
+    override func tearDown() {
+        view = nil
+        presenter = nil
+        coreDataManager = nil
+    }
+
+    func testGetSuccess() throws {
+        // Arrange
+        view = MockFavouriteView()
+        coreDataManager = MockCoreDataForFavourite()
+        presenter = FavouritePresenter(view: view, coreDataManager: coreDataManager, router: router)
+        
+        // Act
+        presenter.fetchFavourite()
+        
+        // Assert
+        XCTAssertEqual(view.isSuccess, true)
+        XCTAssertNotNil(view.isSuccess)
+    }
+    
+    func testGetFailure() throws {
+        // Arrange
+        view = MockFavouriteView()
+        coreDataManager = MockCoreDataForFavourite()
+        presenter = FavouritePresenter(view: view, coreDataManager: coreDataManager, router: router)
+        
+        // Act
+        coreDataManager.isNeedSuccess = false
+        presenter.fetchFavourite()
+        
+        // Assert
+        XCTAssertEqual(view.isSuccess, false)
+        XCTAssertNotNil(view.isSuccess)
+    }
 }

@@ -2,26 +2,74 @@ import XCTest
 import CoreData
 @testable import lab_1
 
-class CartViewTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class MockCartView: CartInputProtocol {
+    public var isSuccess: Bool?
+    
+    func success() {
+        isSuccess = true
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func failure() {
+        isSuccess = false
     }
+}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class MockCoreDataForCart: CartAccessProtocol {
+    public var isNeedSuccess: Bool = true
+    
+    func getCart() -> [CartProduct] {
+        if isNeedSuccess == true {
+            return [CartProduct()]
+        } else {
+            return [CartProduct]()
         }
     }
+}
 
+class CartViewTest: XCTestCase {
+    var view: MockCartView!
+    var coreDataManager: MockCoreDataForCart!
+    var router: RouterCartProtocol!
+    var presenter: CartOutputProtocol!
+    
+    override func setUp() {
+        let navigationController = MockNavigationController()
+        let builder = BuilderCart()
+        router = RouterCart(navigationController: navigationController, builder: builder)
+        coreDataManager = MockCoreDataForCart()
+    }
+    
+    override func tearDown() {
+        view = nil
+        coreDataManager = nil
+        router = nil
+        presenter = nil
+    }
+    
+    func testGetSuccess() throws {
+        // Arrange
+        view = MockCartView()
+        presenter = CartPresenter(view: view, coreDataManager: coreDataManager, router: router)
+        
+        // Act
+        presenter.fetchCart()
+        
+        // Assert
+        XCTAssertNotNil(view.isSuccess)
+        XCTAssertEqual(view.isSuccess, true)
+    }
+    
+    func testGetFailure() throws {
+        // Arrange
+        view = MockCartView()
+        presenter = CartPresenter(view: view, coreDataManager: coreDataManager, router: router)
+        
+        // Act
+        coreDataManager.isNeedSuccess = false
+        presenter.fetchCart()
+        
+        // Assert
+        XCTAssertNotNil(view.isSuccess)
+        XCTAssertEqual(view.isSuccess, false)
+    }
 }

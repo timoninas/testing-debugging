@@ -1,7 +1,11 @@
 import Foundation
 import CoreData
 
-extension CoreDataManager {
+protocol FavouriteAccessProtocol {
+    func getFavourite() -> [FavouriteProduct]
+}
+
+extension CoreDataManager: FavouriteAccessProtocol {
     func getFavourite() -> [FavouriteProduct] {
         let context = self.viewContext
         let fetchRequest = NSFetchRequest<FavouriteProduct>(entityName: "FavouriteProduct")
