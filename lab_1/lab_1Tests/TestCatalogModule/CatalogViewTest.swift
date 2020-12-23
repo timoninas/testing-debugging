@@ -13,6 +13,7 @@ class MockCatalogView: CatalogInputProtocol {
 }
 
 class MockNetworkService: NetworkServiceProtocol {
+    
     var products: [Product]!
     
     init() {}

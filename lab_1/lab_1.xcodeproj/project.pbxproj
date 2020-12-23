@@ -20,6 +20,11 @@
 		772C12E1254B60260010A35C /* CatalogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E0254B60260010A35C /* CatalogViewCell.swift */; };
 		772C12E6254C08570010A35C /* TypeProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12E5254C08570010A35C /* TypeProductViewCell.swift */; };
 		772C12EB254C1B3E0010A35C /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C12EA254C1B3E0010A35C /* Extension+String.swift */; };
+		773904E5259217D800D70EA4 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16C592592160800ADC300 /* CoreDataManagerTest.swift */; };
+		773904F42592180E00D70EA4 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16C512591FB4900ADC300 /* CoreDataTestStack.swift */; };
+		773904F92592183D00D70EA4 /* CatalogIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773904F82592183D00D70EA4 /* CatalogIntegrationTest.swift */; };
+		7745447325922C67000A402C /* FavouriteIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745447225922C67000A402C /* FavouriteIntegrationTest.swift */; };
+		7745447F25922CFE000A402C /* CartIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7745447E25922CFE000A402C /* CartIntegrationTest.swift */; };
 		774D3303253ED64C001D451F /* BuilderCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D3302253ED64C001D451F /* BuilderCart.swift */; };
 		774D3317253ED8B5001D451F /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D3316253ED8B5001D451F /* CatalogPresenter.swift */; };
 		774D3320253EDB35001D451F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774D331F253EDB35001D451F /* Product.swift */; };
@@ -32,6 +37,10 @@
 		77878AF3255FBCBC007FE155 /* CoreDataManager+Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AF2255FBCBC007FE155 /* CoreDataManager+Catalog.swift */; };
 		77878AF8255FBD18007FE155 /* CoreDataManager+Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AF7255FBD18007FE155 /* CoreDataManager+Favourite.swift */; };
 		77878AFD255FBD34007FE155 /* CoreDataManager+Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77878AFC255FBD34007FE155 /* CoreDataManager+Cart.swift */; };
+		77996A122591102600F0C8D7 /* CatalogUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77996A112591102600F0C8D7 /* CatalogUITest.swift */; };
+		77996A172591E2BA00F0C8D7 /* FavouriteUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77996A162591E2BA00F0C8D7 /* FavouriteUITest.swift */; };
+		77996A1C2591E4C500F0C8D7 /* CartUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77996A1B2591E4C500F0C8D7 /* CartUITest.swift */; };
+		77996A212591E6BA00F0C8D7 /* E2EUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77996A202591E6BA00F0C8D7 /* E2EUITest.swift */; };
 		77A1216B2567A7B40098EC46 /* RouterCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1216A2567A7B40098EC46 /* RouterCart.swift */; };
 		77A121702567AF900098EC46 /* RouterCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A1216F2567AF900098EC46 /* RouterCatalog.swift */; };
 		77A121752567AFB10098EC46 /* RouterFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A121742567AFB10098EC46 /* RouterFavourite.swift */; };
@@ -51,6 +60,8 @@
 		77AD6E572539C7B100E0D02B /* lab_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD6E562539C7B100E0D02B /* lab_1UITests.swift */; };
 		77AFB23B25501FF800FE6B62 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AFB23A25501FF800FE6B62 /* FavouriteView.swift */; };
 		77AFB24B2550214A00FE6B62 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AFB24A2550214A00FE6B62 /* CartView.swift */; };
+		77F16C522591FB4900ADC300 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16C512591FB4900ADC300 /* CoreDataTestStack.swift */; };
+		77F16C652592161800ADC300 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16C592592160800ADC300 /* CoreDataManagerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +95,9 @@
 		772C12E0254B60260010A35C /* CatalogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewCell.swift; sourceTree = "<group>"; };
 		772C12E5254C08570010A35C /* TypeProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProductViewCell.swift; sourceTree = "<group>"; };
 		772C12EA254C1B3E0010A35C /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		773904F82592183D00D70EA4 /* CatalogIntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogIntegrationTest.swift; sourceTree = "<group>"; };
+		7745447225922C67000A402C /* FavouriteIntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteIntegrationTest.swift; sourceTree = "<group>"; };
+		7745447E25922CFE000A402C /* CartIntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartIntegrationTest.swift; sourceTree = "<group>"; };
 		774D3302253ED64C001D451F /* BuilderCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderCart.swift; sourceTree = "<group>"; };
 		774D3316253ED8B5001D451F /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
 		774D331F253EDB35001D451F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -95,6 +109,10 @@
 		77878AF2255FBCBC007FE155 /* CoreDataManager+Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Catalog.swift"; sourceTree = "<group>"; };
 		77878AF7255FBD18007FE155 /* CoreDataManager+Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Favourite.swift"; sourceTree = "<group>"; };
 		77878AFC255FBD34007FE155 /* CoreDataManager+Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Cart.swift"; sourceTree = "<group>"; };
+		77996A112591102600F0C8D7 /* CatalogUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogUITest.swift; sourceTree = "<group>"; };
+		77996A162591E2BA00F0C8D7 /* FavouriteUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteUITest.swift; sourceTree = "<group>"; };
+		77996A1B2591E4C500F0C8D7 /* CartUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUITest.swift; sourceTree = "<group>"; };
+		77996A202591E6BA00F0C8D7 /* E2EUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2EUITest.swift; sourceTree = "<group>"; };
 		77A1216A2567A7B40098EC46 /* RouterCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterCart.swift; sourceTree = "<group>"; };
 		77A1216F2567AF900098EC46 /* RouterCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterCatalog.swift; sourceTree = "<group>"; };
 		77A121742567AFB10098EC46 /* RouterFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterFavourite.swift; sourceTree = "<group>"; };
@@ -120,6 +138,8 @@
 		77AD6E582539C7B100E0D02B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77AFB23A25501FF800FE6B62 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		77AFB24A2550214A00FE6B62 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		77F16C512591FB4900ADC300 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		77F16C592592160800ADC300 /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +173,7 @@
 			children = (
 				770E343E256E51AF006A74A4 /* FavouriteViewTest.swift */,
 				770E3443256E51C1006A74A4 /* FavouritePresenterTest.swift */,
+				7745447725922C6A000A402C /* Integration */,
 			);
 			path = TestFavouriteModule;
 			sourceTree = "<group>";
@@ -162,6 +183,7 @@
 			children = (
 				770E344F256E51DA006A74A4 /* CartViewTest.swift */,
 				770E3454256E51E9006A74A4 /* CartPresenterTest.swift */,
+				7745448325922D01000A402C /* Integration */,
 			);
 			path = TestCartModule;
 			sourceTree = "<group>";
@@ -181,6 +203,30 @@
 				770E3463256E5DDE006A74A4 /* FilterService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		773904FD2592184600D70EA4 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				773904F82592183D00D70EA4 /* CatalogIntegrationTest.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		7745447725922C6A000A402C /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				7745447225922C67000A402C /* FavouriteIntegrationTest.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		7745448325922D01000A402C /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				7745447E25922CFE000A402C /* CartIntegrationTest.swift */,
+			);
+			path = Integration;
 			sourceTree = "<group>";
 		};
 		774D3307253ED68B001D451F /* Catalog */ = {
@@ -264,6 +310,24 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		77996A252591E6C000F0C8D7 /* TestModules */ = {
+			isa = PBXGroup;
+			children = (
+				77996A112591102600F0C8D7 /* CatalogUITest.swift */,
+				77996A162591E2BA00F0C8D7 /* FavouriteUITest.swift */,
+				77996A1B2591E4C500F0C8D7 /* CartUITest.swift */,
+			);
+			path = TestModules;
+			sourceTree = "<group>";
+		};
+		77996A2C2591E6D100F0C8D7 /* E2E */ = {
+			isa = PBXGroup;
+			children = (
+				77996A202591E6BA00F0C8D7 /* E2EUITest.swift */,
+			);
+			path = E2E;
+			sourceTree = "<group>";
+		};
 		77A121872567AFF00098EC46 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +343,7 @@
 			children = (
 				77A1219E2567C4850098EC46 /* CatalogViewTest.swift */,
 				770E3433256E4A00006A74A4 /* CatalogPresenterTest.swift */,
+				773904FD2592184600D70EA4 /* Integration */,
 			);
 			path = TestCatalogModule;
 			sourceTree = "<group>";
@@ -339,6 +404,8 @@
 		77AD6E4A2539C7B100E0D02B /* lab_1Tests */ = {
 			isa = PBXGroup;
 			children = (
+				77F16C592592160800ADC300 /* CoreDataManagerTest.swift */,
+				77F16C512591FB4900ADC300 /* CoreDataTestStack.swift */,
 				77A121B22567D46E0098EC46 /* TestRouters */,
 				77A121A32567C48C0098EC46 /* TestCatalogModule */,
 				770E3448256E51C6006A74A4 /* TestFavouriteModule */,
@@ -354,6 +421,8 @@
 			children = (
 				77AD6E562539C7B100E0D02B /* lab_1UITests.swift */,
 				77AD6E582539C7B100E0D02B /* Info.plist */,
+				77996A252591E6C000F0C8D7 /* TestModules */,
+				77996A2C2591E6D100F0C8D7 /* E2E */,
 			);
 			path = lab_1UITests;
 			sourceTree = "<group>";
@@ -531,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				773904E5259217D800D70EA4 /* CoreDataManagerTest.swift in Sources */,
 				7767580B2550AD170049642A /* CartPresenter.swift in Sources */,
 				772C12EB254C1B3E0010A35C /* Extension+String.swift in Sources */,
 				77A1216B2567A7B40098EC46 /* RouterCart.swift in Sources */,
@@ -555,6 +625,7 @@
 				77AFB23B25501FF800FE6B62 /* FavouriteView.swift in Sources */,
 				77AD6E342539C7AE00E0D02B /* SceneDelegate.swift in Sources */,
 				77A121702567AF900098EC46 /* RouterCatalog.swift in Sources */,
+				773904F42592180E00D70EA4 /* CoreDataTestStack.swift in Sources */,
 				772C12E1254B60260010A35C /* CatalogViewCell.swift in Sources */,
 				776758022550AC1B0049642A /* FavouritePresenter.swift in Sources */,
 				77A121942567B04C0098EC46 /* BuilderFavourite.swift in Sources */,
@@ -571,10 +642,15 @@
 				770E3434256E4A00006A74A4 /* CatalogPresenterTest.swift in Sources */,
 				77A1219F2567C4850098EC46 /* CatalogViewTest.swift in Sources */,
 				77A121AE2567D46B0098EC46 /* RouterCatalogTest.swift in Sources */,
+				77F16C522591FB4900ADC300 /* CoreDataTestStack.swift in Sources */,
 				770E3450256E51DA006A74A4 /* CartViewTest.swift in Sources */,
+				77F16C652592161800ADC300 /* CoreDataManagerTest.swift in Sources */,
 				770E3455256E51E9006A74A4 /* CartPresenterTest.swift in Sources */,
+				7745447325922C67000A402C /* FavouriteIntegrationTest.swift in Sources */,
 				77AD6E4C2539C7B100E0D02B /* lab_1Tests.swift in Sources */,
+				773904F92592183D00D70EA4 /* CatalogIntegrationTest.swift in Sources */,
 				770E3469256E654C006A74A4 /* RouterCartTest.swift in Sources */,
+				7745447F25922CFE000A402C /* CartIntegrationTest.swift in Sources */,
 				770E3444256E51C1006A74A4 /* FavouritePresenterTest.swift in Sources */,
 				770E343F256E51AF006A74A4 /* FavouriteViewTest.swift in Sources */,
 			);
@@ -584,7 +660,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77996A212591E6BA00F0C8D7 /* E2EUITest.swift in Sources */,
+				77996A172591E2BA00F0C8D7 /* FavouriteUITest.swift in Sources */,
 				77AD6E572539C7B100E0D02B /* lab_1UITests.swift in Sources */,
+				77996A122591102600F0C8D7 /* CatalogUITest.swift in Sources */,
+				77996A1C2591E4C500F0C8D7 /* CartUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

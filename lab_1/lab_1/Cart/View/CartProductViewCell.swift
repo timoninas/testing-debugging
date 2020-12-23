@@ -118,7 +118,7 @@ class CartProductViewCell: UITableViewCell {
     
     @objc
     func removeProduct() {
-        CoreDataManager.shared.deleteProductFromCart(cartProduct: self.product)
+        CoreDataManager.shared.deleteProductFromCart(product: self.product)
         if let delegate = delegate {
             delegate.reloadCollectionView()
         }

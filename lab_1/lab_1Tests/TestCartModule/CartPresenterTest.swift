@@ -27,7 +27,7 @@ class MockCartPresenter: CartOutputProtocol {
 
 class CartPresenterTest: XCTestCase {
     var view: CartView!
-    var coreDataManager: MockCoreDataForCart!
+    var coreDataManager: CartAccessProtocol!
     var router: RouterCartProtocol!
     var presenter: MockCartPresenter!
     
@@ -35,7 +35,7 @@ class CartPresenterTest: XCTestCase {
         let navigationController = MockNavigationController()
         let builder = BuilderCart()
         router = RouterCart(navigationController: navigationController, builder: builder)
-        coreDataManager = MockCoreDataForCart()
+        coreDataManager = CoreDataManagerTst()
     }
     
     override func tearDown() {

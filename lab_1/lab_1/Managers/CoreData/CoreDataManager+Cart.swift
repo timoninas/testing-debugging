@@ -40,10 +40,10 @@ extension CoreDataManager: CartAccessProtocol {
         }
     }
     
-    func deleteProductFromCart(cartProduct: CartProduct) {
+    func deleteProductFromCart(product: CartProduct) {
         let context = self.viewContext
         
-        context.delete(cartProduct)
+        context.delete(product)
         
         do {
             try context.save()

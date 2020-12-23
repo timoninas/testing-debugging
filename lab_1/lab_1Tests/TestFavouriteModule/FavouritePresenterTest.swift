@@ -27,7 +27,7 @@ class FavouritePresenterTest: XCTestCase {
     var view: FavouriteView!
     var presenter: MockFavouritePresenter!
     var router: RouterFavouriteProtocol!
-    var coreDataManager: MockCoreDataForFavourite!
+    var coreDataManager: FavouriteAccessProtocol!
 
     override func setUp() {
         let navigationController = UINavigationController()
@@ -44,7 +44,7 @@ class FavouritePresenterTest: XCTestCase {
     func testFetchFavourite() throws {
         // Arrange
         view = FavouriteView()
-        coreDataManager = MockCoreDataForFavourite()
+        coreDataManager = CoreDataManagerTst()
         presenter = MockFavouritePresenter(view: view, coreDataManager: coreDataManager, router: router)
         view.presenter = presenter
         
