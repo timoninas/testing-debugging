@@ -4,7 +4,6 @@ language: swift
 osx_image: xcode12.2
 env:
   - PROJECT_NAME=lab_1
-install: (cd $PROJECT_NAME && swift package update)
 script:
-  - xcodebuild build-for-testing -workspace lab_1.xcworkspace -scheme lab_1 -sdk iphonesimulator -destination platform=iOS Simulator,OS=14.2, name=iPhone 12 
-  - xcodebuild test -workspace lab_1.xcworkspace -scheme lab_1 -sdk iphonesimulator -destination platform=iOS Simulator,OS=14.2, name=iPhone 12
+  - xcodebuild build-for-testing -workspace lab_1.xcworkspace -scheme lab_1 -sdk iphonesimulator -destination id=D4F26426-1E02-47A0-89BF-FA9C8D2A82E3 
+  - xcodebuild test -workspace lab_1.xcworkspace -scheme lab_1 -sdk iphonesimulator -destination id=D4F26426-1E02-47A0-89BF-FA9C8D2A82E3 
